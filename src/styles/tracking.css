@@ -1,0 +1,274 @@
+/* ─── Tracking Page ─── */
+.tracking {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.tracking-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.tracking-title h1 {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+}
+.tracking-title p {
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.tracking-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  transition: all 0.15s;
+}
+.stat-card:hover { border-color: var(--border-2); }
+.stat-label {
+  font-size: 12px;
+  color: var(--text-2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.stat-value.down { color: var(--success); }
+.stat-value.up { color: var(--danger); }
+.stat-sub {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 6px;
+}
+
+/* ─── Tracked list ─── */
+.tracked-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tracked-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  transition: all 0.2s;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: cardIn 0.4s forwards;
+}
+.tracked-item:hover {
+  border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
+  box-shadow: var(--shadow-sm);
+}
+
+.tracked-thumb {
+  width: 80px; height: 80px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  flex-shrink: 0;
+}
+
+.tracked-info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-bottom: 6px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tracked-meta {
+  font-size: 12px;
+  color: var(--text-2);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tracked-meta .tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.tracked-price {
+  text-align: right;
+  min-width: 130px;
+}
+.tracked-price .now {
+  font-size: 20px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.tracked-price .change {
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.tracked-price .change.down { color: var(--success); }
+.tracked-price .change.up { color: var(--danger); }
+.tracked-price .change.flat { color: var(--text-3); }
+.tracked-price .was {
+  font-size: 12px;
+  color: var(--text-3);
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+
+.tracked-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* Sparkline */
+.sparkline {
+  width: 90px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.sparkline svg { width: 100%; height: 100%; display: block; }
+.sparkline path.line {
+  fill: none;
+  stroke: var(--success);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sparkline path.line.up { stroke: var(--danger); }
+.sparkline path.line.flat { stroke: var(--text-3); }
+
+/* ─── Empty state ─── */
+.empty-state {
+  text-align: center;
+  padding: 80px 24px;
+  background: var(--surface);
+  border: 1px dashed var(--border-2);
+  border-radius: var(--radius);
+}
+.empty-state .icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+.empty-state h2 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.empty-state p {
+  font-size: 15px;
+  color: var(--text-2);
+  max-width: 400px;
+  margin: 0 auto 24px;
+  line-height: 1.55;
+}
+
+/* ─── Notification banner ─── */
+.notify-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+.notify-banner .bell {
+  font-size: 20px;
+}
+.notify-banner .text { flex: 1; }
+.notify-banner .text b { font-weight: 600; }
+.notify-banner .btn { padding: 6px 12px; font-size: 13px; }
+
+/* ─── Toggle switch (tracking) ─── */
+.toggle {
+  width: 40px; height: 24px;
+  border-radius: 999px;
+  background: var(--border-2);
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+}
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.toggle.on { background: var(--accent); }
+.toggle.on::after { transform: translateX(16px); }
+
+/* ─── Mobile ─── */
+@media (max-width: 860px) {
+  .tracking { padding: 20px 16px 60px; }
+  .tracking-title h1 { font-size: 24px; }
+  .tracking-stats { grid-template-columns: 1fr 1fr; }
+  .tracking-stats .stat-card:last-child { grid-column: 1 / -1; }
+
+  .tracked-item {
+    grid-template-columns: 64px 1fr auto;
+    gap: 12px;
+  }
+  .tracked-thumb { width: 64px; height: 64px; font-size: 26px; }
+  .tracked-actions { grid-column: 1 / -1; justify-content: flex-end; }
+  .tracked-price { text-align: left; min-width: 0; grid-column: 1 / -1; padding-left: 76px; margin-top: -8px; }
+  .sparkline { display: none; }
+}
+
+@media (max-width: 560px) {
+  .tracking-stats { grid-template-columns: 1fr; }
+  .tracking-stats .stat-card:last-child { grid-column: auto; }
+  .tracked-item {
+    grid-template-columns: 56px 1fr;
+  }
+  .tracked-thumb { width: 56px; height: 56px; font-size: 22px; }
+  .tracked-price { padding-left: 68px; }
+}

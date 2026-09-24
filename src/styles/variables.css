@@ -1,0 +1,72 @@
+:root {
+  /* ─── Палитра (light) ─── */
+  --bg: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-2: #F4F4F5;
+  --surface-3: #EFEFF1;
+
+  --border: #EAEAEA;
+  --border-2: #E0E0E3;
+
+  --text: #111113;
+  --text-2: #6B7280;
+  --text-3: #9CA3AF;
+
+  --accent: #4F46E5;
+  --accent-hover: #4338CA;
+  --accent-soft: #EEF0FF;
+
+  --success: #16A34A;
+  --success-bg: #ECFDF5;
+  --success-border: #BBF7D0;
+
+  --warning: #F59E0B;
+  --danger: #DC2626;
+
+  /* ─── Бренды маркетплейсов ─── */
+  --ozon: #005BFF;
+  --wb: #CB11AB;
+  --dns: #FC8507;
+  --yandex: #FC3F1D;
+
+  /* ─── Тени ─── */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow:    0 1px 2px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.06);
+  --shadow-lg: 0 4px 8px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.10);
+
+  /* ─── Радиусы ─── */
+  --radius: 16px;
+  --radius-sm: 12px;
+  --radius-xs: 8px;
+
+  /* ─── Размеры ─── */
+  --container: 1240px;
+  --topbar-h: 67px;
+}
+
+[data-theme="dark"] {
+  --bg: #0B0B0D;
+  --surface: #141417;
+  --surface-2: #1C1C20;
+  --surface-3: #232328;
+
+  --border: #26262B;
+  --border-2: #33333A;
+
+  --text: #F4F4F5;
+  --text-2: #A1A1AA;
+  --text-3: #71717A;
+
+  --accent: #6366F1;
+  --accent-hover: #818CF8;
+  --accent-soft: #1E1B4B;
+
+  --success-bg: #052E1A;
+  --success-border: #14532D;
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.3);
+  --shadow:    0 1px 2px rgba(0,0,0,0.4), 0 6px 20px rgba(0,0,0,0.4);
+  --shadow-lg: 0 4px 8px rgba(0,0,0,0.5), 0 16px 40px rgba(0,0,0,0.6);
+}
