@@ -121,7 +121,7 @@ async function loadProducts(query) {
   try {
     const data = await apiSearch(query, 20);
     products = data.products || [];
-    console.log('[Home] loaded from API:', data.count, 'products, source:', data.source);
+    console.log(`[Home] loaded ${data.count} products from ${data.source.toUpperCase()}`);
   } catch (err) {
     console.error('[Home] API failed:', err);
     products = [];

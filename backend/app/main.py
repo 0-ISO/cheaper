@@ -1,3 +1,11 @@
+import logging
+
+# ─── Логирование (должно быть ДО импорта FastAPI) ───
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -12,7 +20,7 @@ app = FastAPI(
     debug=settings.DEBUG,
 )
 
-# CORS — чтобы фронт с :5173 мог обращаться
+# ─── CORS (на случай если фронт обратится напрямую) ───
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.CORS_ORIGINS,
@@ -21,7 +29,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Роуты
+# ─── Роуты ───
 app.include_router(health.router, prefix=settings.API_PREFIX)
 app.include_router(search.router, prefix=settings.API_PREFIX)
 app.include_router(products.router, prefix=settings.API_PREFIX)

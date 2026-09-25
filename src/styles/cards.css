@@ -116,6 +116,7 @@
 .mp-wb .mp-logo { background: var(--wb); }
 .mp-dns .mp-logo { background: var(--dns); }
 .mp-yandex .mp-logo { background: var(--yandex); }
+.mp-mvideo .mp-logo { background: #E50000; }
 
 .price-row .val {
   font-weight: 700;

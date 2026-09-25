@@ -1,9 +1,6 @@
 {
   "name": "cenomer",
   "version": "0.5.0",
-  "description": "Сравнение цен на Ozon, Wildberries, DNS и Яндекс Маркете",
-  "type": "module",
-  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",

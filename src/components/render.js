@@ -1,7 +1,10 @@
 import { formatPrice, formatNumber, percentDiff, sortOffers } from '../lib/utils.js';
-import { MARKETPLACES } from '../data/demo.js';
+import { MARKETPLACES, PRICE_HISTORY } from '../data/demo.js';
 import { renderChart } from '../lib/chart.js';
-import { PRICE_HISTORY } from '../data/demo.js';
+
+function getMarketplace(id) {
+  return MARKETPLACES[id] || { id, name: id, short: id.charAt(0).toUpperCase() };
+}
 
 function renderPriceRows(offers) {
   const sorted = sortOffers(offers);
@@ -10,7 +13,7 @@ function renderPriceRows(offers) {
   return sorted.map((o, i) => {
     const isBest = i === 0;
     const delta = isBest ? '' : '+' + percentDiff(o.price, best) + '%';
-    const mp = MARKETPLACES[o.mp];
+    const mp = getMarketplace(o.mp);   // ← защита
 
     return `
       <div class="price-row ${isBest ? 'best' : ''}">
@@ -38,14 +41,14 @@ function cardHTML(p, index) {
       <div class="card-main">
         <div class="thumb">
           ${p.inStock ? '<span class="thumb-badge">В наличии</span>' : ''}
-          ${p.emoji}
+          ${p.emoji || '📦'}
         </div>
 
         <div class="info">
           <h3><a href="#/product/${p.id}" data-link>${p.title}</a></h3>
           <div class="meta">
-            <span class="star">★ ${p.rating}</span>
-            <span>${formatNumber(p.reviews)} отзывов</span>
+            ${p.rating ? `<span class="star">★ ${p.rating}</span>` : ''}
+            ${p.reviews ? `<span>${formatNumber(p.reviews)} отзывов</span>` : ''}
             ${p.inStock ? '<span class="stock">В наличии</span>' : ''}
           </div>
           <div class="prices">${renderPriceRows(p.offers)}</div>

@@ -1,6 +1,8 @@
 /* ─── Topbar ─── */
 .topbar {
-  position: sticky; top: 0; z-index: 50;
+  position: sticky;
+  top: 0;
+  z-index: 999;
   background: color-mix(in srgb, var(--bg) 80%, transparent);
   backdrop-filter: saturate(180%) blur(16px);
   -webkit-backdrop-filter: saturate(180%) blur(16px);
@@ -16,20 +18,31 @@
 }
 
 .logo {
-  display: flex; align-items: center; gap: 10px;
-  font-weight: 700; font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 17px;
   letter-spacing: -0.015em;
 }
 .logo-mark {
-  width: 32px; height: 32px;
+  width: 32px;
+  height: 32px;
   border-radius: 9px;
   background: linear-gradient(135deg, var(--accent), #8B5CF6);
-  display: grid; place-items: center;
-  color: #fff; font-size: 16px; font-weight: 800;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
   box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
-.nav { display: flex; gap: 4px; margin-left: 12px; }
+.nav {
+  display: flex;
+  gap: 4px;
+  margin-left: 12px;
+}
 .nav-link {
   padding: 8px 14px;
   border-radius: 8px;
@@ -43,7 +56,9 @@
 
 .topbar-right {
   margin-left: auto;
-  display: flex; gap: 8px; align-items: center;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 /* ─── Hero ─── */
@@ -51,10 +66,12 @@
   padding: 56px 0 32px;
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 45;              /* ← было 1, подняли выше toolbar (40) */
 }
 .hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 6px 14px 6px 8px;
   border-radius: 999px;
   background: var(--surface);
@@ -66,7 +83,8 @@
   box-shadow: var(--shadow-xs);
 }
 .hero-badge .pulse {
-  width: 8px; height: 8px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--success);
   animation: pulse 2s infinite;
@@ -96,14 +114,18 @@
 .hero-sub b { color: var(--text); font-weight: 700; }
 
 .hero-stats {
-  display: flex; gap: 24px;
+  display: flex;
+  gap: 24px;
   justify-content: center;
   margin-bottom: 32px;
   flex-wrap: wrap;
 }
 .hero-stat {
-  display: flex; align-items: baseline; gap: 6px;
-  font-size: 14px; color: var(--text-2);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-2);
 }
 .hero-stat b {
   color: var(--text);
@@ -149,21 +171,24 @@
 }
 .search-box input::placeholder { color: var(--text-3); }
 
-/* Search dropdown */
+/* ─── Search dropdown ─── */
 .search-dropdown {
   position: absolute;
   top: calc(100% + 8px);
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow-lg);
   padding: 8px;
-  z-index: 30;
+  z-index: 50;              /* ← было 35, подняли выше toolbar (40) */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
   transition: all 0.18s;
+  max-height: 320px;
+  overflow-y: auto;
 }
 .search-dropdown.open {
   opacity: 1;
@@ -191,10 +216,12 @@
 }
 .dd-item:hover { background: var(--surface-2); }
 .dd-item .dd-icon {
-  width: 32px; height: 32px;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
   background: var(--surface-2);
-  display: grid; place-items: center;
+  display: grid;
+  place-items: center;
   font-size: 15px;
   flex-shrink: 0;
 }
@@ -209,20 +236,29 @@
   margin: 6px 4px;
 }
 
+/* ─── Chips ─── */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 /* ─── Toolbar (sticky) ─── */
 .toolbar {
   position: sticky;
   top: var(--topbar-h);
-  z-index: 40;
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  z-index: 40;              /* ниже hero (45) → dropdown поверх toolbar */
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 12px 0;
   margin-bottom: 20px;
   transition: box-shadow 0.2s;
 }
-.toolbar.scrolled { box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+.toolbar.scrolled {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
 .toolbar-inner {
   max-width: var(--container);
   margin: 0 auto;
@@ -232,9 +268,14 @@
   gap: 12px;
   flex-wrap: wrap;
 }
-.toolbar-count { font-size: 14px; font-weight: 600; }
-.toolbar-count span { color: var(--text-2); font-weight: 400; }
-
+.toolbar-count {
+  font-size: 14px;
+  font-weight: 600;
+}
+.toolbar-count span {
+  color: var(--text-2);
+  font-weight: 400;
+}
 .toolbar .filters { margin-left: auto; }
 
 /* ─── Results ─── */
@@ -244,52 +285,7 @@
   padding-bottom: 80px;
 }
 
-/* ─── Demo toggle ─── */
-.demo-toggle {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  box-shadow: var(--shadow-lg);
-  display: flex; align-items: center; gap: 10px;
-  z-index: 60;
-  transition: all 0.15s;
-}
-.demo-toggle:hover { transform: translateY(-2px); }
-.demo-toggle .switch {
-  width: 34px; height: 20px;
-  border-radius: 999px;
-  background: var(--border-2);
-  position: relative;
-  transition: background 0.2s;
-}
-.demo-toggle .switch::after {
-  content: '';
-  position: absolute; top: 2px; left: 2px;
-  width: 16px; height: 16px;
-  border-radius: 50%;
-  background: #fff;
-  transition: transform 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-}
-.demo-toggle.on .switch { background: var(--accent); }
-.demo-toggle.on .switch::after { transform: translateX(14px); }
-
-.demo-panel {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 60;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-end;
-}
-.demo-panel .demo-toggle {
-  position: static;
-}
+/* ─── Demo panel ─── */
 .demo-panel {
   position: fixed;
   bottom: 24px;
@@ -318,7 +314,8 @@
 .demo-toggle:hover { transform: translateY(-2px); }
 
 .demo-toggle .switch {
-  width: 34px; height: 20px;
+  width: 34px;
+  height: 20px;
   border-radius: 999px;
   background: var(--border-2);
   position: relative;
@@ -327,17 +324,27 @@
 }
 .demo-toggle .switch::after {
   content: '';
-  position: absolute; top: 2px; left: 2px;
-  width: 16px; height: 16px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #fff;
   transition: transform 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 .demo-toggle.on .switch { background: var(--accent); }
 .demo-toggle.on .switch::after { transform: translateX(14px); }
 
+/* ─── Mobile ─── */
 @media (max-width: 560px) {
-  .demo-panel { bottom: 16px; right: 16px; }
-  .demo-toggle { padding: 8px 12px; font-size: 12px; }
+  .demo-panel {
+    bottom: 16px;
+    right: 16px;
+  }
+  .demo-toggle {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
 }

@@ -144,3 +144,6 @@ def _normalize_product(p: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     except Exception as e:
         logger.debug(f"[WB] Failed to normalize product: {e}")
         return None
+    # В конце wb.py добавь алиас:
+async def search(query: str, limit: int = 20):
+    return await search_wb(query, limit)

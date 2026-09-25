@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Query
 from typing import Optional
+
 from app.schemas import SearchResponse
 from app.services.search import search_products
+
 
 router = APIRouter(tags=["search"])
 
@@ -10,19 +12,18 @@ router = APIRouter(tags=["search"])
 async def search(
     q: str = Query("", description="Поисковый запрос"),
     limit: int = Query(20, ge=1, le=100),
-    source: Optional[str] = Query(
-        None,
-        description="dns | wb | demo (по умолчанию: dns → wb → demo)"
-    ),
+    source: Optional[str] = Query(None, description="mvideo | dns | wb | demo"),
 ):
-    if source == "dns":
+    if source == "mvideo":
+        sources = ["mvideo"]
+    elif source == "dns":
         sources = ["dns"]
     elif source == "wb":
         sources = ["wb"]
     elif source == "demo":
         sources = []
     else:
-        sources = ["dns", "wb"]
+        sources = None   # ← пусть search.py сам решит
 
     result = await search_products(q, sources=sources)
     products = result["products"][:limit]
